@@ -1,11 +1,11 @@
 local tArgs = { ... }
 if #tArgs ~= 3 then
-	print( "Usage: excavate <width>, <height>, <depth>" )
+	print( "Usage: excavate <height>, <width>, <depth>" )
 	return
 end
 
-width = tonumber(tArgs[1])
-height = tonumber(tArgs[2])
+height = tonumber(tArgs[1])
+width = tonumber(tArgs[2])
 depth = tonumber(tArgs[3])
 
 -- Turtle Starting point
@@ -254,7 +254,7 @@ local function dig_twoBytwo()
 end
 
 local function dig_twoBythree()
-	if yDir == 1 and xDir == 1 then
+	if xDir == 1 then
 		digUp()
 		turnRight()
 		digMoveForward()
@@ -264,7 +264,7 @@ local function dig_twoBythree()
 		turnLeft()
 		digMoveForward()
 		xDir = xDir + 2
-	elseif yDir == 3 and xDir == 3 then
+	elseif xDir == 3 then
 		digUp()
 		turnLeft()
 		digMoveForward()
