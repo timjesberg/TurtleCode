@@ -282,6 +282,7 @@ local function dig_threeByone()
 		digMoveUp()
 		digUp()
 		digMoveForward()
+		yDir = yDir + 1
 	else
 		digUp()
 		digDown()
