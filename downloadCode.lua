@@ -1,0 +1,1 @@
+c = http.get("https://github.com/timjesberg/TurtleCode/blob/master/Tunnel.lua"); file = io.open("ccl.lua", "w"); local data = c.readAll(); io.output(file); io.write(data); io.close();
