@@ -66,7 +66,7 @@ end
 
 -- Try to dig forward
 local function digForward()
-	while not turtle.detect() do
+	while turtle.detect() do
 		if turtle.detect() then
 			if turtle.dig() then
 				if not collect() then
