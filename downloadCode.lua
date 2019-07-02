@@ -1,1 +1,1 @@
-c = http.get("https://github.com/timjesberg/TurtleCode/blob/master/Tunnel.lua"); file = io.open("ccl.lua", "w"); local data = c.readAll(); io.output(file); io.write(data); io.close();
+c = http.get("https://raw.githubusercontent.com/timjesberg/TurtleCode/master/Tunnel.lua"); file = io.open("Tunnel.lua", "w"); local data = c.readAll(); io.output(file); io.write(data); io.close();
