@@ -213,7 +213,7 @@ local function turnRight()
 		facing = "backward"
 	elseif facing == "backward" then
 		facing = "left"
-	elseif facing = "left" then
+	elseif facing == "left" then
 		facing = "forward"
 	else
 		facing = "right"
@@ -349,7 +349,7 @@ local function dig_threeBytwo()
 end
 
 local function faceForward()
-	if facing = "left" then
+	if facing == "left" then
 		turnRight()
 	elseif facing == "right" then
 		turnLeft()
@@ -360,7 +360,7 @@ local function faceForward()
 end
 
 local function faceBackward()
-	if facing = "left" then
+	if facing == "left" then
 		turnLeft()
 	elseif facing == "right" then
 		turnRight()
@@ -440,7 +440,7 @@ local function moveToAStartPoint()
 	-- if the turtle is not at either end of xDir then we need to move to an end
 	if !(xDir == 1 or xDir == width) then
 		-- Figure out which end the turtle is closer too
-		if xDir - 1 < width = xDir then
+		if xDir - 1 < width - xDir then
 			-- turtle is closer to the left end
 			moveDownXDir()
 			faceRight()
