@@ -438,7 +438,7 @@ local function moveToAStartPoint()
 	moveUpZDir()
 
 	-- if the turtle is not at either end of xDir then we need to move to an end
-	if !(xDir == 1 or xDir == width) then
+	if not (xDir == 1 or xDir == width) then
 		-- Figure out which end the turtle is closer too
 		if xDir - 1 < width - xDir then
 			-- turtle is closer to the left end
@@ -453,7 +453,7 @@ local function moveToAStartPoint()
 	
 	-- If turtle is not at 2 or height - 1 then we need to move towards top or bottom
 	if height > 2 then
-		if !(yDir == 2 or yDir == height - 1) then
+		if not (yDir == 2 or yDir == height - 1) then
 			-- Figure out which end the turtle is closer too
 			if yDir - 2 < height - 1 - yDir then
 				if yDir == 1 then
