@@ -485,16 +485,38 @@ local function moveToAStartPoint()
 		if not (yDir == 2 or yDir == height - 1) then
 			-- Figure out which end the turtle is closer too
 			if yDir - 2 < height - 1 - yDir then
+				-- turtle is closer to the bottom
 				if yDir == 1 then
 					turtle.up()
+					if xDir == 1 then
+						faceRight()
+					elseif xDir == width then
+						faceLeft()
+					end
 				else
 					moveDownYDir()
+					if xDir == 1 then
+						faceRight()
+					elseif xDir == width then
+						faceLeft()
+					end
 				end
 			else
+				-- turtle is closer to the top
 				if yDir == height then
 					turtle.down()
+					if xDir == 1 then
+						faceRight()
+					elseif xDir == width then
+						faceLeft()
+					end
 				else
 					moveUpYDir()
+					if xDir == 1 then
+						faceRight()
+					elseif xDir == width then
+						faceLeft()
+					end
 				end
 			end
 		end
