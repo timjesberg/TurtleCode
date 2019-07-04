@@ -580,7 +580,7 @@ for n=1,depth do
 				digMoveForward()
 				xDir = xDir + 1
 			end
-		elseif (height == 2) or (digLevelNumber <=2) then
+		elseif (height == 2) or (digLevelNumber == 2 or digLevelNumber == 1) then
 			print("Second if")
 			for n=1,width do
 				dig_oneBytwo()
