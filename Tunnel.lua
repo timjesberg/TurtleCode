@@ -569,10 +569,12 @@ for n=1,depth do
 			turnLeft()
 			digMoveForward()
 			turnRight()
-		else
+		elseif facing == "left" then
 			turnRight()
 			digMoveForward()
 			turnLeft()
+		elseif facing == "forward" then
+			digMoveForward()
 		end
 		if (height == 1) or (yDir == height) then 
 			print("First if")
