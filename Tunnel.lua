@@ -252,8 +252,8 @@ local function dig_oneBythree()
 end
 
 local function dig_twoByone()
-	digUp()
 	digMoveForward()
+	digUp()
 end
 
 local function dig_twoBytwo()
@@ -394,43 +394,65 @@ end
 
 local function moveDownXDir() 
 	faceLeft()
-	while turtle.forward() do
-		xDir = xDir - 1
+	for n=xDir,1,-1 do 
+		if turtle.forward() then
+			xDir = xDir - 1
+		else
+			break
+		end
 	end
 end
 
 local function moveUpXDir()
 	faceRight()
-	while turtle.forward() do
-		xDir = xDir + 1
+	for n=1,width do 
+		if turtle.forward() then
+			xDir = xDir + 1
+		else
+			break
+		end
 	end
 end
 
 local function moveDownYDir()
 	for n=yDir,2,-1 do
-		turtle.down()
-		yDir = yDir - 1
+		if turtle.down() then 
+			yDir = yDir - 1
+		else
+			break
+		end
 	end
 end
 
 local function moveUpYDir()
 	for n=yDir,height-1 do
-		turtle.up()
-		yDir = yDir + 1
+		if turtle.up() then
+			yDir = yDir + 1
+		else
+			break
+		end
 	end
 end
 
 local function moveDownZDir()
 	faceBackward()
-	while turtle.forward() do
-		zDir = zDir - 1
+	for n=zDir,1,-1 do 
+		if turtle.forward() then 
+			zDir = zDir - 1
+		else
+			break
+		end
 	end
 end
 
 local function moveUpZDir()
 	faceForward()
-	while turtle.forward() do
-		zDir = zDir + 1
+	for n=1,depth do
+		if turtle.forward() then
+			zDir = zDir + 1
+		else
+			break
+		end
 	end
 end
 
