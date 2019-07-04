@@ -556,7 +556,7 @@ for n=1,depth do
 			digDown()
 			if ascending == "true" then
 				while yDir <= height - 1 do
-					if facing == "right" do 
+					if facing == "right" then 
 						for n=1,width do
 							digMoveForward()
 							digUp()
@@ -566,7 +566,7 @@ for n=1,depth do
 						turnLeft()
 						turnLeft()
 						moveUpToNextDiggingLevel()
-					elseif facing == "left" do
+					elseif facing == "left" then
 						for n=width,1,-1 do
 							digMoveForward()
 							digUp()
@@ -581,7 +581,7 @@ for n=1,depth do
 				ascending = "false"
 			else --descending
 				while yDir >= 2 do
-					if facing right do 
+					if facing == "right" then 
 						for n=1,width do
 							digMoveForward()
 							digUp()
@@ -591,7 +591,7 @@ for n=1,depth do
 						turnLeft()
 						turnLeft()
 						moveDownToNextDiggingLevel()
-					elseif facing left do
+					elseif facing == "left" then
 						for n=width,1,-1 do
 							digMoveForward()
 							digUp()
