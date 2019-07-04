@@ -576,6 +576,7 @@ for n=1,depth do
 		elseif facing == "forward" then
 			digMoveForward()
 		end
+		print(facing)
 		if (height == 1) or (yDir == height) then 
 			print("First if")
 			for n=1,width do
@@ -593,7 +594,9 @@ for n=1,depth do
 			digUp()
 			digDown()
 			if ascending == "true" then
+				print("ascending")
 				while yDir <= height - 1 and zDir < depth do
+					print("ascending while")
 					if facing == "right" then 
 						for n=1,width do
 							digMoveForward()
@@ -618,7 +621,9 @@ for n=1,depth do
 				end
 				ascending = "false"
 			else --descending
+				print("descending")
 				while yDir >= 2 and zDir < depth do
+					print("descending while")
 					if facing == "right" then 
 						for n=1,width do
 							digMoveForward()
