@@ -593,17 +593,9 @@ for n=1,depth do
 		print("Entering new tunnelling algorithm")
 		moveToAStartPoint()
 		print("Initial forward move")
-		if facing == "right" then 
-			turnLeft()
-			digMoveForward()
-			turnRight()
-		elseif facing == "left" then
-			turnRight()
-			digMoveForward()
-			turnLeft()
-		elseif facing == "forward" then
-			digMoveForward()
-		end
+		faceForward()
+		digMoveForward()
+		faceRight()
 		print(facing)
 		if (height == 1) or (yDir == height) then 
 			print("First if")
@@ -626,30 +618,34 @@ for n=1,depth do
 				while yDir <= height - 1 and zDir < depth and xDir <= width do
 					print("ascending while")
 					if facing == "right" then 
-						for n=1,width do
-							digMoveForward()
+						repeat
 							digUp()
 							digDown()
+							digMoveForward()
 							xDir = xDir + 1
-						end
+						until xDir == width
 						if not moveUpToNextDiggingLevel() then
 							faceForward()
 							digMoveForward()
 							faceLeft()
+							digUp()
+							digDown()
 						else
 							faceLeft()
 						end
 					elseif facing == "left" then
-						for n=width,1,-1 do
-							digMoveForward()
+						repeat
 							digUp()
 							digDown()
+							digMoveForward()
 							xDir = xDir - 1
-						end
+						until xDir == 1
 						if not moveUpToNextDiggingLevel() then
 							faceForward()
 							digMoveForward()
 							faceRight()
+							digUp()
+							digDown()
 						else
 							faceRight()
 						end
@@ -661,30 +657,34 @@ for n=1,depth do
 				while yDir >= 2 and zDir < depth and xDir >= 1 do
 					print("descending while")
 					if facing == "right" then 
-						for n=1,width do
+						repeat 
 							digMoveForward()
 							digUp()
 							digDown()
 							xDir = xDir + 1
-						end
-						if not moveUpToNextDiggingLevel() then
+						until xDir == width
+						if not moveDownToNextDiggingLevel() then
 							faceForward()
 							digMoveForward()
 							faceLeft()
+							digUp()
+							digDown()
 						else
 							faceLeft()
 						end
 					elseif facing == "left" then
-						for n=width,1,-1 do
+						repeat 
 							digMoveForward()
 							digUp()
 							digDown()
 							xDir = xDir - 1
-						end
-						if not moveUpToNextDiggingLevel() then
+						until xDir == 1
+						if not moveDownToNextDiggingLevel() then
 							faceForward()
 							digMoveForward()
 							faceRight()
+							digUp()
+							digDown()
 						else
 							faceRight()
 						end
