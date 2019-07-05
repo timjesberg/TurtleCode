@@ -488,6 +488,7 @@ local function moveToAStartPoint()
 				-- turtle is closer to the bottom
 				if yDir == 1 then
 					turtle.up()
+					yDir = yDir + 1
 					if xDir == 1 then
 						faceRight()
 					elseif xDir == width then
@@ -505,6 +506,7 @@ local function moveToAStartPoint()
 				-- turtle is closer to the top
 				if yDir == height then
 					turtle.down()
+					yDir = YDir - 1
 					if xDir == 1 then
 						faceRight()
 					elseif xDir == width then
@@ -524,9 +526,7 @@ local function moveToAStartPoint()
 end
 
 local function moveUpToNextDiggingLevel()
-	print("Move up to next digging level")
 	digLevelNumber = 0
-	print("YDir: " .. yDir)
 	for n=1,3 do
 		if yDir < height - 1 then
 			turtle.up()
