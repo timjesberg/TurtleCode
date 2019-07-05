@@ -526,6 +526,7 @@ end
 local function moveUpToNextDiggingLevel()
 	print("Move up to next digging level")
 	digLevelNumber = 0
+	print("YDir: " .. yDir)
 	for n=1,3 do
 		if yDir < height - 1 then
 			turtle.up()
@@ -617,7 +618,7 @@ for n=1,depth do
 			digDown()
 			if ascending == "true" then
 				print("ascending")
-				while yDir <= height - 1 and zDir < depth do
+				while yDir <= height - 1 and zDir < depth and xDir <= width do
 					print("ascending while")
 					if facing == "right" then 
 						for n=1,width do
@@ -644,7 +645,7 @@ for n=1,depth do
 				ascending = "false"
 			else --descending
 				print("descending")
-				while yDir >= 2 and zDir < depth do
+				while yDir >= 2 and zDir < depth and xDir >= 1 do
 					print("descending while")
 					if facing == "right" then 
 						for n=1,width do
