@@ -527,29 +527,34 @@ end
 
 local function moveUpToNextDiggingLevel()
 	digLevelNumber = 0
+	movedUp = "false"
 	for n=1,3 do
 		if yDir < height - 1 then
 			turtle.up()
 			yDir = yDir + 1
 			digLevelNumber = digLevelNumber + 1
+			movedUp = "true"
 		else
 			break
 		end
 	end	
+	return movedUp
 end
 
 local function moveDownToNextDiggingLevel()
-	print("Move down to next digging level")
 	digLevelNumber = 0
+	movedDown = "false"
 	for n=1,3 do
 		if yDir > 2 then
 			turtle.down()
 			yDir = yDir - 1
 			digLevelNumber = digLevelNumber + 1
+			movedDown = "true"
 		else
 			break
 		end
 	end	
+	return movedDown
 end
 
 if turtle.getFuelLevel() < 1 then
@@ -627,9 +632,13 @@ for n=1,depth do
 							digDown()
 							xDir = xDir + 1
 						end
-						turnLeft()
-						turnLeft()
-						moveUpToNextDiggingLevel()
+						if not moveUpToNextDiggingLevel() then
+							faceForward()
+							digMoveForward()
+							faceLeft()
+						else
+							faceLeft()
+						end
 					elseif facing == "left" then
 						for n=width,1,-1 do
 							digMoveForward()
@@ -637,9 +646,13 @@ for n=1,depth do
 							digDown()
 							xDir = xDir - 1
 						end
-						turnRight()
-						turnRight()
-						moveUpToNextDiggingLevel()
+						if not moveUpToNextDiggingLevel() then
+							faceForward()
+							digMoveForward()
+							faceRight()
+						else
+							faceRight()
+						end
 					end
 				end
 				ascending = "false"
@@ -654,9 +667,13 @@ for n=1,depth do
 							digDown()
 							xDir = xDir + 1
 						end
-						turnLeft()
-						turnLeft()
-						moveDownToNextDiggingLevel()
+						if not moveUpToNextDiggingLevel() then
+							faceForward()
+							digMoveForward()
+							faceLeft()
+						else
+							faceLeft()
+						end
 					elseif facing == "left" then
 						for n=width,1,-1 do
 							digMoveForward()
@@ -664,9 +681,13 @@ for n=1,depth do
 							digDown()
 							xDir = xDir - 1
 						end
-						turnRight()
-						turnRight()
-						moveDownToNextDiggingLevel()
+						if not moveUpToNextDiggingLevel() then
+							faceForward()
+							digMoveForward()
+							faceRight()
+						else
+							faceRight()
+						end
 					end
 				end
 				ascending = "true"
