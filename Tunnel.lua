@@ -595,9 +595,9 @@ for n=1,depth do
 		print("Initial forward move")
 		faceForward()
 		digMoveForward()
-		if xDir = 1 then
+		if xDir == 1 then
 			faceRight()
-		elsif xDir == width then
+		elseif xDir == width then
 			faceLeft()
 		end
 		print(facing)
