@@ -24,7 +24,7 @@ if width < 1  or height < 1 or depth < 1 then
 end
 
 -- Determine if turtle is full
-local function collect()	
+local function collect()
 	local bFull = true
 	for n=1,16 do
 		local nCount = turtle.getItemCount(n)
@@ -32,7 +32,7 @@ local function collect()
 			bFull = false
 		end
 	end
-	
+
 	if bFull then
 		print( "No empty slots left." )
 		return false
@@ -88,7 +88,7 @@ local function digForward()
 		else
 			sleep(0.5)
 		end
-		
+
 		sleep(0.5)
 	end
 
@@ -137,7 +137,7 @@ local function digDown()
 		else
 			sleep(0.5)
 		end
-		
+
 		sleep(0.5)
 	end
 
@@ -187,7 +187,7 @@ local function digUp()
 		else
 			sleep( 0.5 )
 		end
-		
+
 	sleep( 0.5 )
 	end
 
@@ -221,11 +221,11 @@ local function turnRight()
 end
 
 -- Digging Jobs --
-local function dig_oneByone() 
+local function dig_oneByone()
 	digMoveForward()
 end
 
-local function dig_oneBytwo() 
+local function dig_oneBytwo()
 	digMoveForward()
 	turnRight()
 	digForward()
@@ -392,10 +392,10 @@ local function faceRight()
 	end
 end
 
-local function moveDownXDir() 
+local function moveDownXDir()
 	print("move down xDir")
 	faceLeft()
-	for n=xDir,1,-1 do 
+	for n=xDir,1,-1 do
 		if turtle.forward() then
 			xDir = xDir - 1
 		else
@@ -407,7 +407,7 @@ end
 local function moveUpXDir()
 	print("move up xDir")
 	faceRight()
-	for n=1,width do 
+	for n=1,width do
 		if turtle.forward() then
 			xDir = xDir + 1
 		else
@@ -419,7 +419,7 @@ end
 local function moveDownYDir()
 	print("move down yDir")
 	for n=yDir,2,-1 do
-		if turtle.down() then 
+		if turtle.down() then
 			yDir = yDir - 1
 		else
 			break
@@ -441,8 +441,8 @@ end
 local function moveDownZDir()
 	print("move down zDir")
 	faceBackward()
-	for n=zDir,1,-1 do 
-		if turtle.forward() then 
+	for n=zDir,1,-1 do
+		if turtle.forward() then
 			zDir = zDir - 1
 		else
 			break
@@ -479,7 +479,7 @@ local function moveToAStartPoint()
 			faceLeft()
 		end
 	end
-	
+
 	-- If turtle is not at 2 or height - 1 then we need to move towards top or bottom
 	if height > 2 then
 		if not (yDir == 2 or yDir == height - 1) then
@@ -537,7 +537,7 @@ local function moveUpToNextDiggingLevel()
 		else
 			break
 		end
-	end	
+	end
 	return movedUp
 end
 
@@ -553,7 +553,7 @@ local function moveDownToNextDiggingLevel()
 		else
 			break
 		end
-	end	
+	end
 	return movedDown
 end
 
@@ -588,7 +588,7 @@ for n=1,depth do
 			elseif width == 2 then
 				dig_threeBytwo()
 			end
-		end	
+		end
 	else
 		print("Entering new tunnelling algorithm")
 		moveToAStartPoint()
@@ -597,7 +597,7 @@ for n=1,depth do
 		digMoveForward()
 		faceRight()
 		print(facing)
-		if (height == 1) or (yDir == height) then 
+		if (height == 1) or (yDir == height) then
 			print("First if")
 			for n=1,width do
 				digMoveForward()
@@ -609,87 +609,51 @@ for n=1,depth do
 				dig_oneBytwo()
 				xDir = xDir + 1
 			end
-		elseif (height >= 3) or (digLevelNumber == 3) then 
+		elseif (height >= 3) or (digLevelNumber == 3) then
 			print("Third if")
 			digUp()
 			digDown()
 			if ascending == "true" then
 				print("ascending")
-				while yDir <= height - 1 and zDir < depth and xDir <= width do
+				repeat
 					print("ascending while")
-					if facing == "right" then 
+					if facing == "right" then
 						repeat
+							digMoveForward()
 							digUp()
 							digDown()
-							digMoveForward()
 							xDir = xDir + 1
 						until xDir == width
-						if not moveUpToNextDiggingLevel() then
-							faceForward()
-							digMoveForward()
-							faceLeft()
-							digUp()
-							digDown()
-						else
-							faceLeft()
-						end
 					elseif facing == "left" then
 						repeat
+							digMoveForward()
 							digUp()
 							digDown()
-							digMoveForward()
 							xDir = xDir - 1
 						until xDir == 1
-						if not moveUpToNextDiggingLevel() then
-							faceForward()
-							digMoveForward()
-							faceRight()
-							digUp()
-							digDown()
-						else
-							faceRight()
-						end
 					end
-				end
+				until moveUpToNextDiggingLevel()
 				ascending = "false"
 			else --descending
-				print("descending")
-				while yDir >= 2 and zDir < depth and xDir >= 1 do
+				print("descending while")
+				repeat
 					print("descending while")
-					if facing == "right" then 
-						repeat 
+					if facing == "right" then
+						repeat
 							digMoveForward()
 							digUp()
 							digDown()
 							xDir = xDir + 1
 						until xDir == width
-						if not moveDownToNextDiggingLevel() then
-							faceForward()
-							digMoveForward()
-							faceLeft()
-							digUp()
-							digDown()
-						else
-							faceLeft()
-						end
 					elseif facing == "left" then
-						repeat 
+						repeat
 							digMoveForward()
 							digUp()
 							digDown()
 							xDir = xDir - 1
 						until xDir == 1
-						if not moveDownToNextDiggingLevel() then
-							faceForward()
-							digMoveForward()
-							faceRight()
-							digUp()
-							digDown()
-						else
-							faceRight()
-						end
 					end
-				end
+				until moveDownToNextDiggingLevel()
 				ascending = "true"
 			end
 		end
