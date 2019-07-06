@@ -595,7 +595,11 @@ for n=1,depth do
 		print("Initial forward move")
 		faceForward()
 		digMoveForward()
-		faceRight()
+		if xDir = 1 then
+			faceRight()
+		elsif xDir == width then
+			faceLeft()
+		end
 		print(facing)
 		if (height == 1) or (yDir == height) then
 			print("First if")
