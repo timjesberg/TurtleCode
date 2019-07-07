@@ -663,4 +663,7 @@ for n=1,depth do
 		end
 	end
 	zDir = zDir + 1
+	if zDir % 10 == 0 then
+		turtle.placeDown()
+	end
 end
