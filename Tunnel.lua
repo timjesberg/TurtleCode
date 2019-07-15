@@ -52,32 +52,6 @@ local function unload()
 	turtle.select(1)
 end
 
--- Return and drop off supplies
-local function returnSupplies()
-	print("Return supplies called")
-	local x, y, z = xDir, yDir, zDir
-
-	moveDownZDir()
-	moveDownXDir()
-	moveDownYDir()
-
-	unload()
-
-	for n=1,y do
-		turtle.up()
-	end
-
-	faceRight()
-	for n=1,x do
-		turtle.forward()
-	end
-
-	moveUpZDir()
-
-	xDir, yDir = x, y
-
-end
-
 -- Try to dig and move forward
 local function digMoveForward()
 	while not turtle.forward() do
@@ -494,6 +468,32 @@ local function moveUpZDir()
 			break
 		end
 	end
+end
+
+-- Return and drop off supplies
+local function returnSupplies()
+	print("Return supplies called")
+	local x, y, z = xDir, yDir, zDir
+
+	moveDownZDir()
+	moveDownXDir()
+	moveDownYDir()
+
+	unload()
+
+	for n=1,y do
+		turtle.up()
+	end
+
+	faceRight()
+	for n=1,x do
+		turtle.forward()
+	end
+
+	moveUpZDir()
+
+	xDir, yDir = x, y
+
 end
 
 local function moveToAStartPoint()
