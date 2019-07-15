@@ -23,6 +23,121 @@ if width < 1  or height < 1 or depth < 1 then
 	return
 end
 
+local function faceForward()
+	if facing == "left" then
+		turnRight()
+	elseif facing == "right" then
+		turnLeft()
+	elseif facing == "backward" then
+		turnRight()
+		turnRight()
+	end
+end
+
+local function faceBackward()
+	if facing == "left" then
+		turnLeft()
+	elseif facing == "right" then
+		turnRight()
+	elseif facing == "forward" then
+		turnRight()
+		turnRight()
+	end
+end
+
+local function faceLeft()
+	if facing == "forward" then
+		turnLeft()
+	elseif facing == "backward" then
+		turnRight()
+	elseif facing == "right" then
+		turnRight()
+		turnRight()
+	end
+end
+
+local function faceRight()
+	if facing == "forward" then
+		turnRight()
+	elseif facing == "backward" then
+		turnLeft()
+	elseif facing == "left" then
+		turnRight()
+		turnRight()
+	end
+end
+
+local function moveDownXDir()
+	print("move down xDir")
+	faceLeft()
+	for n=xDir,1,-1 do
+		if turtle.forward() then
+			xDir = xDir - 1
+		else
+			break
+		end
+	end
+end
+
+local function moveUpXDir()
+	print("move up xDir")
+	faceRight()
+	for n=1,width do
+		if turtle.forward() then
+			xDir = xDir + 1
+		else
+			break
+		end
+	end
+end
+
+local function moveDownYDir()
+	print("move down yDir")
+	for n=yDir,2,-1 do
+		if turtle.down() then
+			yDir = yDir - 1
+		else
+			break
+		end
+	end
+end
+
+local function moveUpYDir()
+	print("move up yDir")
+	for n=yDir,height-1 do
+		if turtle.up() then
+			yDir = yDir + 1
+		else
+			break
+		end
+	end
+end
+
+local function moveDownZDir()
+	print("move down zDir")
+	faceBackward()
+	for n=zDir,1,-1 do
+		if turtle.forward() then
+			zDir = zDir - 1
+		else
+			break
+		end
+	end
+end
+
+local function moveUpZDir()
+	print("move up zDir")
+	faceForward()
+	for n=1,depth do
+		if turtle.forward() then
+			print("zDir++")
+			zDir = zDir + 1
+		else
+			break
+		end
+	end
+end
+
 -- Determine if turtle is full
 local function collect()
 	local bFull = true
@@ -50,6 +165,32 @@ local function unload()
 		end
 	end
 	turtle.select(1)
+end
+
+-- Return and drop off supplies
+local function returnSupplies()
+	print("Return supplies called")
+	local x, y, z = xDir, yDir, zDir
+
+	moveDownZDir()
+	moveDownXDir()
+	moveDownYDir()
+
+	unload()
+
+	for n=1,y do
+		turtle.up()
+	end
+
+	faceRight()
+	for n=1,x do
+		turtle.forward()
+	end
+
+	moveUpZDir()
+
+	xDir, yDir = x, y
+
 end
 
 -- Try to dig and move forward
@@ -353,147 +494,6 @@ local function dig_threeBytwo()
 		turnLeft()
 		xDir = xDir + 1
 	end
-end
-
-local function faceForward()
-	if facing == "left" then
-		turnRight()
-	elseif facing == "right" then
-		turnLeft()
-	elseif facing == "backward" then
-		turnRight()
-		turnRight()
-	end
-end
-
-local function faceBackward()
-	if facing == "left" then
-		turnLeft()
-	elseif facing == "right" then
-		turnRight()
-	elseif facing == "forward" then
-		turnRight()
-		turnRight()
-	end
-end
-
-local function faceLeft()
-	if facing == "forward" then
-		turnLeft()
-	elseif facing == "backward" then
-		turnRight()
-	elseif facing == "right" then
-		turnRight()
-		turnRight()
-	end
-end
-
-local function faceRight()
-	if facing == "forward" then
-		turnRight()
-	elseif facing == "backward" then
-		turnLeft()
-	elseif facing == "left" then
-		turnRight()
-		turnRight()
-	end
-end
-
-local function moveDownXDir()
-	print("move down xDir")
-	faceLeft()
-	for n=xDir,1,-1 do
-		if turtle.forward() then
-			xDir = xDir - 1
-		else
-			break
-		end
-	end
-end
-
-local function moveUpXDir()
-	print("move up xDir")
-	faceRight()
-	for n=1,width do
-		if turtle.forward() then
-			xDir = xDir + 1
-		else
-			break
-		end
-	end
-end
-
-local function moveDownYDir()
-	print("move down yDir")
-	for n=yDir,2,-1 do
-		if turtle.down() then
-			yDir = yDir - 1
-		else
-			break
-		end
-	end
-end
-
-local function moveUpYDir()
-	print("move up yDir")
-	for n=yDir,height-1 do
-		if turtle.up() then
-			yDir = yDir + 1
-		else
-			break
-		end
-	end
-end
-
-local function moveDownZDir()
-	print("move down zDir")
-	faceBackward()
-	for n=zDir,1,-1 do
-		if turtle.forward() then
-			zDir = zDir - 1
-		else
-			break
-		end
-	end
-end
-
-local function moveUpZDir()
-	print("move up zDir")
-	faceForward()
-	for n=1,depth do
-		if turtle.forward() then
-			print("zDir++")
-			zDir = zDir + 1
-		else
-			break
-		end
-	end
-end
-
--- Return and drop off supplies
-local function returnSupplies()
-	print("Return supplies called")
-	local x, y, z = xDir, yDir, zDir
-
-	moveDownZDir()
-	moveDownXDir()
-	moveDownYDir()
-
-	unload()
-
-	for n=1,y do
-		turtle.up()
-	end
-
-	faceRight()
-	for n=1,x do
-		turtle.forward()
-	end
-
-	moveUpZDir()
-
-	xDir, yDir = x, y
-
 end
 
 local function moveToAStartPoint()
