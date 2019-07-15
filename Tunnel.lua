@@ -455,6 +455,7 @@ local function moveUpZDir()
 	faceForward()
 	for n=1,depth do
 		if turtle.forward() then
+			print("zDir++")
 			zDir = zDir + 1
 		else
 			break
@@ -602,28 +603,23 @@ for n=1,depth do
 		end
 		print(facing)
 		if (height == 1) or (yDir == height) then
-			print("First if")
 			for n=1,width do
 				digMoveForward()
 				xDir = xDir + 1
 			end
 		elseif (height == 2) or (digLevelNumber == 2 or digLevelNumber == 1) then
-			print("Second if")
 			for n=1,width do
 				dig_oneBytwo()
 				xDir = xDir + 1
 			end
 		elseif (height >= 3) or (digLevelNumber == 3) then
-			print("Third if")
 			digUp()
 			digDown()
 			if ascending == "true" then
 				print("ascending")
 				repeat
-					print("ascending while")
 					if facing == "right" then
 						repeat
-							print("Hi1")
 							digMoveForward()
 							digUp()
 							digDown()
@@ -631,7 +627,6 @@ for n=1,depth do
 						until xDir == width
 					elseif facing == "left" then
 						repeat
-							print("Hi2")
 							digMoveForward()
 							digUp()
 							digDown()
@@ -641,12 +636,10 @@ for n=1,depth do
 				until moveUpToNextDiggingLevel()
 				ascending = "false"
 			else --descending
-				print("descending while")
+				print("descending")
 				repeat
-					print("descending while")
 					if facing == "right" then
 						repeat
-							print("Hi3")
 							digMoveForward()
 							digUp()
 							digDown()
@@ -654,7 +647,6 @@ for n=1,depth do
 						until xDir == width
 					elseif facing == "left" then
 						repeat
-							print("Hi4")
 							digMoveForward()
 							digUp()
 							digDown()
