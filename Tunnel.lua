@@ -40,9 +40,43 @@ local function collect()
 	return true
 end
 
+local function unload()
+	print( "Unloading items..." )
+	for n=1,16 do
+		local nCount = turtle.getItemCount(n)
+		if nCount > 0 then
+			turtle.select(n)
+			turtle.drop()
+			end
+		end
+	end
+	turtle.select(1)
+end
+
 -- Return and drop off supplies
 local function returnSupplies()
 	print("Return supplies called")
+	local x, y, z, = xDir, yDir, zDir
+
+	moveDownZDir()
+	moveDownXDir()
+	moveDownYDir()
+
+	unload()
+
+	for n=1,y do
+		turtle.up()
+	end
+
+	faceRight()
+	for n=1,x do
+		turtle.forward()
+	end
+
+	moveUpZDir()
+
+	xDir, yDir = x, y
+
 end
 
 -- Try to dig and move forward
@@ -565,7 +599,7 @@ end
 
 print( "Tunnelling..." )
 
-while zDir <= depth do
+while zDir < depth do
 	if height * width <= 6 then
 		if height == 1 then
 			if width == 1 then
