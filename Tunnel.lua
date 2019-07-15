@@ -565,7 +565,7 @@ end
 
 print( "Tunnelling..." )
 
-for n=1,depth do
+for zDir,depth do
 	if height * width <= 6 then
 		if height == 1 then
 			if width == 1 then
