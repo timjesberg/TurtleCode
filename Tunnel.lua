@@ -23,6 +23,32 @@ if width < 1  or height < 1 or depth < 1 then
 	return
 end
 
+local function turnLeft()
+	turtle.turnLeft()
+	if facing == "right" then
+		facing = "forward"
+	elseif facing == "forward" then
+		facing = "left"
+	elseif facing == "left" then
+		facing = "backward"
+	else
+		facing = "right"
+	end
+end
+
+local function turnRight()
+	turtle.turnRight()
+	if facing == "right" then
+		facing = "backward"
+	elseif facing == "backward" then
+		facing = "left"
+	elseif facing == "left" then
+		facing = "forward"
+	else
+		facing = "right"
+	end
+end
+
 local function faceForward()
 	if facing == "left" then
 		turnRight()
@@ -340,32 +366,6 @@ local function digUp()
 	end
 
 	return true
-end
-
-local function turnLeft()
-	turtle.turnLeft()
-	if facing == "right" then
-		facing = "forward"
-	elseif facing == "forward" then
-		facing = "left"
-	elseif facing == "left" then
-		facing = "backward"
-	else
-		facing = "right"
-	end
-end
-
-local function turnRight()
-	turtle.turnRight()
-	if facing == "right" then
-		facing = "backward"
-	elseif facing == "backward" then
-		facing = "left"
-	elseif facing == "left" then
-		facing = "forward"
-	else
-		facing = "right"
-	end
 end
 
 -- Digging Jobs --
