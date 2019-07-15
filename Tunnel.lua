@@ -623,6 +623,7 @@ for n=1,depth do
 					print("ascending while")
 					if facing == "right" then
 						repeat
+							print("Hi1")
 							digMoveForward()
 							digUp()
 							digDown()
@@ -630,6 +631,7 @@ for n=1,depth do
 						until xDir == width
 					elseif facing == "left" then
 						repeat
+							print("Hi2")
 							digMoveForward()
 							digUp()
 							digDown()
@@ -644,6 +646,7 @@ for n=1,depth do
 					print("descending while")
 					if facing == "right" then
 						repeat
+							print("Hi3")
 							digMoveForward()
 							digUp()
 							digDown()
@@ -651,6 +654,7 @@ for n=1,depth do
 						until xDir == width
 					elseif facing == "left" then
 						repeat
+							print("Hi4")
 							digMoveForward()
 							digUp()
 							digDown()
