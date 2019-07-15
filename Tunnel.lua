@@ -47,7 +47,6 @@ local function unload()
 		if nCount > 0 then
 			turtle.select(n)
 			turtle.drop()
-			end
 		end
 	end
 	turtle.select(1)
