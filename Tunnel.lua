@@ -465,7 +465,7 @@ end
 
 local function moveToAStartPoint()
 	print("Move to a start point")
-	moveUpZDir()
+	--moveUpZDir()
 
 	-- if the turtle is not at either end of xDir then we need to move to an end
 	if not (xDir == 1 or xDir == width) then
