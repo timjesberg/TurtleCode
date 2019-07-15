@@ -55,7 +55,7 @@ end
 -- Return and drop off supplies
 local function returnSupplies()
 	print("Return supplies called")
-	local x, y, z, = xDir, yDir, zDir
+	local x, y, z = xDir, yDir, zDir
 
 	moveDownZDir()
 	moveDownXDir()
